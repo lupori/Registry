@@ -32,19 +32,16 @@
 body::before{
     content:"";
     position:fixed;
-
     inset:0;
-
     background:url("https://raw.githubusercontent.com/lupori/Registry/main/images/Greyhound_transparente.png")
                center center / 500px no-repeat;
-
-    opacity:.08;
+    opacity:.06;
     pointer-events:none;
-    z-index:-1;
+    z-index:0;
 }
   .layout{
-    display:flex;
-    min-height:100vh;
+    position:relative;
+    z-index:1;
   }
 
   /* MENU / ROSTER GRID VIEW */
