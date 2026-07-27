@@ -29,7 +29,19 @@
     font-family:'Crimson Pro', serif;
     min-height:100vh;
   }
+body::before{
+    content:"";
+    position:fixed;
 
+    inset:0;
+
+    background:url("https://raw.githubusercontent.com/lupori/Registry/main/images/Greyhound_transparente.png")
+               center center / 500px no-repeat;
+
+    opacity:.08;
+    pointer-events:none;
+    z-index:-1;
+}
   .layout{
     display:flex;
     min-height:100vh;
@@ -43,21 +55,7 @@
     max-width:1100px;
     margin:0 auto;
     overflow:hidden;
-  }
-
-  .menu-view::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:url("https://raw.githubusercontent.com/lupori/Registry/main/images/Greyhound_transparente.png");
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:500px;
-
-    opacity:0.08;
-    z-index:0;
-    pointer-events:none;
+  
   }
   
   .menu-header{
@@ -154,21 +152,6 @@
     max-width:900px;
     margin:0 auto;
     overflow:hidden;
-  }
-
-  .page::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:url("https://raw.githubusercontent.com/lupori/Registry/main/images/Greyhound_transparente.png");
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:500px;
-
-    opacity:0.08;
-    z-index:0;
-    pointer-events:none;
   }
 
   .page > *{
