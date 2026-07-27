@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Character Registry</title>
+<title>Greyhound Academy</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
   :root{
-    --ink:#14151c;
-    --ink-deep:#0b0c10;
-    --parchment:#e9e1cd;
-    --parchment-dim:#c9bd9e;
-    --gold:#b8964f;
-    --gold-bright:#d9b76a;
-    --oxide:#7a3b34;
-    --line:rgba(184,150,79,0.25);
+    --ink:#182848;
+    --ink-deep:#0a1128;
+    --parchment:#e6e9f0;
+    --parchment-dim:#a9b4c9;
+    --gold:#c9a961;
+    --gold-bright:#e6c988;
+    --oxide:#93a7c2;
+    --line:rgba(201,169,97,0.25);
   }
 
   *{box-sizing:border-box;}
@@ -66,9 +66,13 @@
   }
 
   .menu-header .sub{
-    font-style:italic;
+    font-style:normal;
+    font-size:1.15rem;
+    letter-spacing:0.03em;
     color:var(--parchment-dim);
-    margin-top:10px;
+    margin-top:14px;
+    text-transform:uppercase;
+    font-family:'Cinzel', serif;
   }
 
   .roster-grid{
@@ -376,9 +380,9 @@ function renderMenu(){
   document.getElementById('layout').innerHTML = `
     <div class="menu-view">
       <div class="menu-header">
-        <div class="eyebrow">Dramatis Personae</div>
-        <h1>The Roster</h1>
-        <div class="sub">a running record of souls — click one to open their sheet</div>
+        <div class="eyebrow">Greyhound Academy</div>
+        <h1>Student Registry</h1>
+        <div class="sub">Official records of enrolled students — select a name to view their file</div>
       </div>
       <div class="roster-grid">${tiles}</div>
     </div>
