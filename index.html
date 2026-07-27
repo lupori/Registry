@@ -148,12 +148,34 @@
 
   /* MAIN SHEET PAGE */
   .page{
+    position:relative;
     flex:1;
     padding:64px 72px;
     max-width:900px;
     margin:0 auto;
+    overflow:hidden;
   }
 
+  .page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:url("https://raw.githubusercontent.com/lupori/Registry/main/images/Greyhound_transparente.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:500px;
+
+    opacity:0.08;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .page > *{
+    position:relative;
+    z-index:1;
+  }
+  
   .back-link{
     display:inline-flex;
     align-items:center;
