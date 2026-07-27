@@ -341,10 +341,13 @@ const characters = [
         html: `<p>Aiden's body generates magnetic fields that interfere with metallic matter in his surroundings. At its current stage, the ability manifests inconsistently, usually reacting to stress, anger, or fear rather than conscious intent. Small metal objects may vibrate, shift slightly, or be drawn toward him without warning, especially during moments of emotional instability.</p>
         <p>With training, the ability has the potential to evolve into full metal manipulation, allowing him to attract, repel, compress, reshape, and alter the structure of nearby metals through direct magnetic influence.</p>
         <p>Advanced applications may include: extracting metal from surrounding structures, shaping it into weapons or restraints, accelerating metallic fragments as projectiles, or reinforcing existing materials. At higher levels of precision, the ability could theoretically extend to the manipulation of iron within the human bloodstream, though such usage would require extreme control and physical strain.</p>
-        <p>Because the ability relies on existing metallic sources, Aiden is significantly more dangerous in urban or industrial environments than in isolated natural settings.</p>
-        <p><strong>Control Level:</strong> Unstable</p>`
+        <p>Because the ability relies on existing metallic sources, Aiden is significantly more dangerous in urban or industrial environments than in isolated natural settings.</p>`
       },
       {
+        heading: "Control Level: Unstable"
+      },
+      {
+        heading: "Likes/Dislikes",
         html: `<ul><li><strong>Likes:</strong> Any sport that involves some kind of competition, crowded and stimulating social settings, fast food, RuPaul (although he would never admit it), sarcastic humor, beer.</li><li><strong>Dislikes:</strong> coffee, being told what to do, fake people, strong perfume, math, waking up early.</li></ul>`
       }
     ]
@@ -419,7 +422,7 @@ function renderSheet(i){
   const sectionsHtml = c.sections.map(s => `
     <div class="sheet-section">
       ${s.heading ? `<h2>${s.heading}</h2>` : ''}
-      ${s.html}
+      ${s.html ? s.html : ''}
     </div>
   `).join('');
 
