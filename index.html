@@ -302,7 +302,8 @@
    Copy an object below, change the fields, add it to the array.
    You can have up to 15+ characters — there's no limit.
    ============================================================ */
-{
+const characters = [
+  {
     name: "Aiden Thorn",
     title: "Student - Metal manipulation",
     portrait: "https://i.pinimg.com/736x/73/7b/a4/737ba4496f2d69a9ecb085fdd0f62097.jpg",
@@ -344,11 +345,11 @@
         <p><strong>Control Level:</strong> Unstable</p>`
       },
       {
-        heading: "Likes & Dislikes",
         html: `<ul><li><strong>Likes:</strong> Any sport that involves some kind of competition, crowded and stimulating social settings, fast food, RuPaul (although he would never admit it), sarcastic humor, beer.</li><li><strong>Dislikes:</strong> coffee, being told what to do, fake people, strong perfume, math, waking up early.</li></ul>`
       }
     ]
   },
+  {
     name: "Isolde Marrow",
     title: "Hedge-witch of the Blackthorn Marsh",
     portrait: "https://placehold.co/300x380/1a1a1a/b8964f?text=Portrait",
@@ -417,7 +418,7 @@ function renderSheet(i){
 
   const sectionsHtml = c.sections.map(s => `
     <div class="sheet-section">
-      <h2>${s.heading}</h2>
+      ${s.heading ? `<h2>${s.heading}</h2>` : ''}
       ${s.html}
     </div>
   `).join('');
