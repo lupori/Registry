@@ -262,23 +262,9 @@
   .sheet-body li{
     margin-bottom:6px;
   }
-  .sheet-main{
-    display:flex;
-    gap:40px;
-    align-items:flex-start;
-}
-
-.crest-column{
-    width:110px;
-    flex-shrink:0;
-    display:flex;
-    justify-content:center;
-}
-
-.content-column{
+.header-text{
     flex:1;
 }
-
 .crest{
     width:115px;
     height:auto;
@@ -463,16 +449,10 @@ function renderSheet(i){
           <h1>${c.name}</h1>
           <div class="subtitle">${c.title}</div>
         </div>
+        <img class="crest" src="${c.crest}" alt="Category Crest">
       </div>
       <div class="sheet-body">
-        <div class="sheet-main">
-    <div class="crest-column">
-        <img class="crest" src="${c.crest}" alt="Category crest">
-    </div>
-
-    <div class="content-column">
-
-        <div class="sheet-section">
+                <div class="sheet-section">
             <h2>Stats</h2>
             <div class="stat-grid">${statsHtml}</div>
         </div>
