@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dramatis Personae</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  :root{
+    --ink:#14151c;
+    --ink-deep:#0b0c10;
+    --parchment:#e9e1cd;
+    --parchment-dim:#c9bd9e;
+    --gold:#b8964f;
+    --gold-bright:#d9b76a;
+    --oxide:#7a3b34;
+    --line:rgba(184,150,79,0.25);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(184,150,79,0.06), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(122,59,52,0.08), transparent 55%),
+      var(--ink-deep);
+    color:var(--parchment);
+    font-family:'Crimson Pro', serif;
+    min-height:100vh;
+  }
+
+  .layout{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* MENU / ROSTER GRID VIEW */
+  .menu-view{
+    flex:1;
+    padding:72px 64px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .menu-header{
+    text-align:center;
+    margin-bottom:56px;
+  }
+
+  .menu-header .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:0.7rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--oxide);
+    margin-bottom:12px;
+  }
+
+  .menu-header h1{
+    font-family:'Cinzel', serif;
+    font-size:2.4rem;
+    font-weight:600;
+    color:var(--gold-bright);
+    margin:0;
+  }
+
+  .menu-header .sub{
+    font-style:italic;
+    color:var(--parchment-dim);
+    margin-top:10px;
+  }
+
+  .roster-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
+    gap:32px 24px;
+  }
+
+  .roster-tile{
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .tile-frame{
+    width:120px;
+    height:120px;
+    border:1px solid var(--gold);
+    padding:4px;
+    background:var(--ink);
+    transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .roster-tile:hover .tile-frame{
+    border-color:var(--gold-bright);
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+  }
+
+  .tile-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:sepia(10%);
+  }
+
+  .tile-name{
+    margin-top:12px;
+    font-family:'Cinzel', serif;
+    font-size:0.92rem;
+    color:var(--parchment-dim);
+    letter-spacing:0.02em;
+    transition:color 0.25s ease;
+  }
+
+  .roster-tile:hover .tile-name{
+    color:var(--gold-bright);
+  }
+
+  /* MAIN SHEET PAGE */
+  .page{
+    flex:1;
+    padding:64px 72px;
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Cinzel', serif;
+    font-size:0.7rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    cursor:pointer;
+    margin-bottom:32px;
+    background:none;
+    border:none;
+    padding:0;
+  }
+
+  .back-link:hover{
+    color:var(--gold-bright);
+  }
+
+  .sheet-header{
+    display:flex;
+    gap:36px;
+    align-items:flex-end;
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+    margin-bottom:36px;
+  }
+
+  .portrait-frame{
+    width:150px;
+    height:190px;
+    flex-shrink:0;
+    border:1px solid var(--gold);
+    padding:5px;
+    background:var(--ink);
+  }
+
+  .portrait-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:sepia(10%);
+  }
+
+  .header-text .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:0.68rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--oxide);
+    margin-bottom:10px;
+  }
+
+  .header-text h1{
+    font-family:'Cinzel', serif;
+    font-size:2.6rem;
+    font-weight:600;
+    color:var(--gold-bright);
+    margin:0 0 8px;
+    line-height:1.1;
+  }
+
+  .header-text .subtitle{
+    font-style:italic;
+    color:var(--parchment-dim);
+    font-size:1.05rem;
+  }
+
+  .sheet-body{
+    font-size:1.08rem;
+    line-height:1.75;
+  }
+
+  .sheet-section{
+    margin-bottom:32px;
+  }
+
+  .sheet-section h2{
+    font-family:'Cinzel', serif;
+    font-size:0.85rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 14px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+    gap:14px;
+  }
+
+  .stat{
+    border:1px solid var(--line);
+    padding:12px 14px;
+    background:rgba(184,150,79,0.04);
+  }
+
+  .stat-label{
+    font-size:0.66rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--parchment-dim);
+    margin-bottom:4px;
+  }
+
+  .stat-value{
+    font-family:'Cinzel', serif;
+    font-size:1.2rem;
+    color:var(--gold-bright);
+  }
+
+  .sheet-body p{
+    margin:0 0 14px;
+    color:var(--parchment);
+  }
+
+  .sheet-body ul{
+    margin:0;
+    padding-left:20px;
+  }
+
+  .sheet-body li{
+    margin-bottom:6px;
+  }
+
+  /* mobile */
+  @media (max-width: 820px){
+    .menu-view{
+      padding:48px 24px;
+    }
+    .menu-header h1{
+      font-size:1.9rem;
+    }
+    .roster-grid{
+      grid-template-columns:repeat(auto-fill, minmax(110px, 1fr));
+      gap:24px 16px;
+    }
+    .tile-frame{
+      width:90px;
+      height:90px;
+    }
+    .page{
+      padding:36px 24px;
+    }
+    .sheet-header{
+      flex-direction:column;
+      align-items:flex-start;
+    }
+    .header-text h1{
+      font-size:2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout" id="layout"></div>
+
+<script>
+/* ============================================================
+   ADD YOUR CHARACTERS HERE.
+   Copy an object below, change the fields, add it to the array.
+   You can have up to 15+ characters — there's no limit.
+   ============================================================ */
+const characters = [
+  {
+    name: "Rennick Vale",
+    title: "Exiled war-cleric of the Ashen Order",
+    portrait: "https://placehold.co/300x380/1a1a1a/b8964f?text=Portrait",
+    stats: {
+      "Age": "34",
+      "Origin": "Duskmere",
+      "Role": "Support / Healer",
+      "Alignment": "Neutral Good"
+    },
+    sections: [
+      {
+        heading: "Appearance",
+        html: "<p>Tall, gaunt, silver hair cropped short. A burn scar runs from his left ear to his collarbone, souvenir of the fire that ended his order. Wears the remains of his ashen robes, patched with civilian cloth.</p>"
+      },
+      {
+        heading: "Personality",
+        html: "<p>Quiet, dry-humored, carries guilt like a second spine. Slow to trust, faster to forgive others than himself.</p>"
+      },
+      {
+        heading: "Background",
+        html: "<p>Once third-ranking cleric of the Ashen Order before its temple burned under his watch. Wanders now, offering healing to whoever needs it, chasing a redemption he privately believes is impossible.</p>"
+      },
+      {
+        heading: "Abilities",
+        html: "<ul><li>Channeled healing (touch-based, costs stamina)</li><li>Minor fire resistance</li><li>Basic swordsmanship, self-taught</li></ul>"
+      }
+    ]
+  },
+  {
+    name: "Isolde Marrow",
+    title: "Hedge-witch of the Blackthorn Marsh",
+    portrait: "https://placehold.co/300x380/1a1a1a/b8964f?text=Portrait",
+    stats: {
+      "Age": "27",
+      "Origin": "Blackthorn Marsh",
+      "Role": "Utility / Illusion",
+      "Alignment": "Chaotic Neutral"
+    },
+    sections: [
+      {
+        heading: "Appearance",
+        html: "<p>Short, sharp-featured, always barefoot regardless of weather. Dresses in layered scavenged fabrics dyed with marsh-berry ink.</p>"
+      },
+      {
+        heading: "Personality",
+        html: "<p>Blunt, unbothered by social convention, finds most people's fears entertaining rather than sympathetic. Loyal once earned, which is rare.</p>"
+      },
+      {
+        heading: "Background",
+        html: "<p>Raised by the marsh itself after being abandoned as an infant, in local legend if nowhere else. Practices old, half-remembered magic that nobody has been able to categorize.</p>"
+      },
+      {
+        heading: "Abilities",
+        html: "<ul><li>Minor illusion / misdirection magic</li><li>Fluent in reading omens (questionable accuracy)</li><li>Immune to marsh toxins</li></ul>"
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   Rendering logic — you shouldn't need to touch anything below
+   ============================================================ */
+
+function renderMenu(){
+  const tiles = characters.map((c, i) => `
+    <div class="roster-tile" onclick="openCharacter(${i})">
+      <div class="tile-frame">
+        <img src="${c.portrait}" alt="${c.name}">
+      </div>
+      <div class="tile-name">${c.name}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('layout').innerHTML = `
+    <div class="menu-view">
+      <div class="menu-header">
+        <div class="eyebrow">Dramatis Personae</div>
+        <h1>The Roster</h1>
+        <div class="sub">a running record of souls — click one to open their sheet</div>
+      </div>
+      <div class="roster-grid">${tiles}</div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSheet(i){
+  const c = characters[i];
+  const statsHtml = Object.entries(c.stats).map(([label, value]) => `
+    <div class="stat">
+      <div class="stat-label">${label}</div>
+      <div class="stat-value">${value}</div>
+    </div>
+  `).join('');
+
+  const sectionsHtml = c.sections.map(s => `
+    <div class="sheet-section">
+      <h2>${s.heading}</h2>
+      ${s.html}
+    </div>
+  `).join('');
+
+  document.getElementById('layout').innerHTML = `
+    <div class="page">
+      <button class="back-link" onclick="renderMenu()">← Back to Roster</button>
+      <div class="sheet-header">
+        <div class="portrait-frame">
+          <img src="${c.portrait}" alt="${c.name}">
+        </div>
+        <div class="header-text">
+          <div class="eyebrow">Character Sheet</div>
+          <h1>${c.name}</h1>
+          <div class="subtitle">${c.title}</div>
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-section">
+          <h2>Stats</h2>
+          <div class="stat-grid">${statsHtml}</div>
+        </div>
+        ${sectionsHtml}
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function openCharacter(i){
+  renderSheet(i);
+}
+
+renderMenu();
+</script>
+
+</body>
+</html>
