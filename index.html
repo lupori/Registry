@@ -37,12 +37,29 @@
 
   /* MENU / ROSTER GRID VIEW */
   .menu-view{
+    position:relative;
     flex:1;
     padding:72px 64px;
     max-width:1100px;
     margin:0 auto;
+    overflow:hidden;
   }
 
+  .menu-view::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:url("https://raw.githubusercontent.com/lupori/Registry/main/images/Greyhound full.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:550px;
+
+    opacity:0.08;
+    z-index:0;
+    pointer-events:none;
+  }
+  
   .menu-header{
     text-align:center;
     margin-bottom:56px;
@@ -80,7 +97,11 @@
     grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
     gap:32px 24px;
   }
-
+.menu-header,
+.roster-grid{
+    position:relative;
+    z-index:1;
+}
   .roster-tile{
     cursor:pointer;
     display:flex;
