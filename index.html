@@ -1163,7 +1163,78 @@ async function submitComment(){
   textarea.value = "";
   renderCommentsList(comments);
 }
+/* ---------- RULE PAGE ---------- */
 
+function renderRulePage(id){
+
+  const rule = RULES.find(r => r.id === id);
+
+  if(!rule){
+    renderRules();
+    return;
+  }
+
+  let content = "";
+
+  if(rule.page.type === "article"){
+    content = rule.page.sections.map(s => `
+      <div class="sheet-section">
+        <h2>${escapeHtml(s.heading)}</h2>
+        ${s.html}
+      </div>
+    `).join("");
+  }
+
+  else if(rule.page.type === "world"){
+    content = `
+      <div class="sheet-section">
+        <h2>World Setting</h2>
+        <p>Information about the Greyhound universe will be added here.</p>
+      </div>
+    `;
+  }
+
+  else if(rule.page.type === "powers"){
+    content = `
+      <div class="sheet-section">
+        <h2>Character Powers & Stats</h2>
+        <p>The classification system and faction information will be added here.</p>
+      </div>
+    `;
+  }
+
+  else if(rule.page.type === "school"){
+    content = `
+      <div class="sheet-section">
+        <h2>Greyhound Rules</h2>
+        <p>The Academy regulations will be added here.</p>
+      </div>
+    `;
+  }
+
+
+  chrome(`
+    <div class="page">
+
+      <button class="back-link" onclick="go('rules')">
+        &larr; Back to Rules
+      </button>
+
+      <div class="header-text" style="margin-bottom:32px;">
+        <div class="eyebrow">Greyhound Academy</div>
+        <h1>${escapeHtml(rule.title)}</h1>
+        <div class="subtitle">
+          ${escapeHtml(rule.subtitle)}
+        </div>
+      </div>
+
+      <div class="sheet-body">
+        ${content}
+      </div>
+
+    </div>
+  `, ["Rules", rule.title]);
+}
 /* ---------- ROUTER ---------- */
 function render(){
   switch(state.screen){
