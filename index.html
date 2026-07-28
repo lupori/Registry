@@ -763,90 +763,84 @@ const PLACES = [
               { id: "corridor2", name: "Corridor", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
             ]
           },
-        {
-  id: "floor3",
-  name: "Third Floor",
-  type: "group",
-  image: PLACEHOLDER_IMG,
-
-  children: [
-
-    {
-      id: "dorms",
-      name: "Dorms",
-      type: "group",
-      image: PLACEHOLDER_IMG,
-
-      children: [
-        {
-  id: "girldorms",
-  name: "Feminine Dorms",
-  type: "group",
-  image: PLACEHOLDER_IMG,
-
-  children: [
-    {
-      id: "girlbathrooms",
-      name: "Feminine Bathrooms",
-      type: "location",
-      image: PLACEHOLDER_IMG,
-      description: "To be filled."
-    },
-
-    {
-      id: "girlswing",
-      name: "Girls' Dormitory Wing",
-      type: "group",
-      image: PLACEHOLDER_IMG,
-
-      children: [
-        {
-          id: "missy-room",
-          name: "Missy's Room",
-          type: "location",
+               {
+          id: "floor3",
+          name: "Third Floor",
+          type: "group",
           image: PLACEHOLDER_IMG,
-          description: "To be filled."
-        }
-      ]
-    }
-  ]
-},
-       {
-  id: "boydorms",
-  name: "Masculine Dorms",
-  type: "group",
-  image: PLACEHOLDER_IMG,
 
-  children: [
-    {
-      id: "boybathrooms",
-      name: "Masculine Bathrooms",
-      type: "location",
-      image: PLACEHOLDER_IMG,
-      description: "To be filled."
-    },
+          children: [
+            {
+              id: "dorms",
+              name: "Dorms",
+              type: "group",
+              image: PLACEHOLDER_IMG,
 
-    {
-      id: "boyswing",
-      name: "Boys' Dormitory Wing",
-      type: "group",
-      image: PLACEHOLDER_IMG,
+              children: [
+                {
+                  id: "girldorms",
+                  name: "Feminine Dorms",
+                  type: "group",
+                  image: PLACEHOLDER_IMG,
+                  children: [
+                    {
+                      id: "girlbathrooms",
+                      name: "Feminine Bathrooms",
+                      type: "location",
+                      image: PLACEHOLDER_IMG,
+                      description: "To be filled."
+                    },
+                    {
+                      id: "girlswing",
+                      name: "Girls' Dormitory Wing",
+                      type: "group",
+                      image: PLACEHOLDER_IMG,
+                      children: [
+                        {
+                          id: "missy-room",
+                          name: "Missy's Room",
+                          type: "location",
+                          image: PLACEHOLDER_IMG,
+                          description: "To be filled."
+                        }
+                      ]
+                    }
+                  ]
+                },
 
-      children: [
-        {
-          id: "nate-room",
-          name: "Nate's Room",
-          type: "location",
-          image: PLACEHOLDER_IMG,
-          description: "To be filled."
-        },
-        {
-          id: "aiden-room",
-          name: "Aiden's Bedroom",
-          type: "location",
-          image: PLACEHOLDER_IMG,
-          description: "To be filled."
-       }
+                {
+                  id: "boydorms",
+                  name: "Masculine Dorms",
+                  type: "group",
+                  image: PLACEHOLDER_IMG,
+                  children: [
+                    {
+                      id: "boybathrooms",
+                      name: "Masculine Bathrooms",
+                      type: "location",
+                      image: PLACEHOLDER_IMG,
+                      description: "To be filled."
+                    },
+                    {
+                      id: "boyswing",
+                      name: "Boys' Dormitory Wing",
+                      type: "group",
+                      image: PLACEHOLDER_IMG,
+                      children: [
+                        {
+                          id: "nate-room",
+                          name: "Nate's Room",
+                          type: "location",
+                          image: PLACEHOLDER_IMG,
+                          description: "To be filled."
+                        },
+                        {
+                          id: "aiden-room",
+                          name: "Aiden's Bedroom",
+                          type: "location",
+                          image: PLACEHOLDER_IMG,
+                          description: "To be filled."
+                        }
                       ]
                     }
                   ]
@@ -860,9 +854,18 @@ const PLACES = [
   },
 
   {
-    id: "world", name: "The Wider World", type: "group", image: PLACEHOLDER_IMG,
+    id: "world",
+    name: "The Wider World",
+    type: "group",
+    image: PLACEHOLDER_IMG,
     children: [
-      { id: "placeholder-location", name: "Placeholder Location", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+      {
+        id: "placeholder-location",
+        name: "Placeholder Location",
+        type: "location",
+        image: PLACEHOLDER_IMG,
+        description: "To be filled."
+      }
     ]
   }
 ];
