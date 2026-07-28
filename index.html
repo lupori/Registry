@@ -208,7 +208,17 @@
     line-height:1.55;
     margin:0;
   }
-
+  .rule-icon{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  margin-bottom:24px;
+  opacity:.9;
+  transition:.3s;
+  }
+  .home-card:hover .rule-icon{
+  transform:scale(1.05);
+  }
   /* MAIN SHEET PAGE (registry character sheet) */
   .page{
     position:relative;
@@ -653,16 +663,61 @@ const COMMENT_AUTHORS = ["Missy", "Nate", "Penelope", "Aiden", "OOC"];
 /* ============================================================
    RULES — edit freely. Same section format as a character sheet.
    ============================================================ */
-const RULES = {
-  title: "The Rules",
-  sub: "Guidelines for the story we're telling together",
-  sections: [
-    { heading: "General Conduct", html: `<p>To be filled.</p>` },
-    { heading: "Character Powers & Balance", html: `<p>To be filled.</p>` },
-    { heading: "Posting & Contribution Guidelines", html: `<p>To be filled.</p>` },
-    { heading: "Content Boundaries", html: `<p>To be filled.</p>` }
-  ]
-};
+const RULES = [
+{
+    id:"guidelines",
+    title:"Posting & Contribution Guidelines",
+    subtitle:"General etiquette and writing standards.",
+    icon:"guidelines.png",
+
+    page:{
+        type:"article",
+        sections:[
+            {
+                heading:"General Conduct",
+                html:`...`
+            },
+            {
+                heading:"Posting",
+                html:`...`
+            }
+        ]
+    }
+},
+
+{
+    id:"world",
+    title:"World Setting",
+    subtitle:"History, atmosphere and the Academy itself.",
+    icon:"academy.jpg",
+
+    page:{
+        type:"world"
+    }
+},
+
+{
+    id:"powers",
+    title:"Character Powers & Stats Chart",
+    subtitle:"Classification system and factions.",
+    icon:"powers.png",
+
+    page:{
+        type:"powers"
+    }
+},
+
+{
+    id:"school",
+    title:"Greyhound Rules",
+    subtitle:"The Academy's internal regulations.",
+    icon:"crest.png",
+
+    page:{
+        type:"school"
+    }
+}
+];
 
 /* ============================================================
    PLACES — the world map. A nested tree.
@@ -840,26 +895,54 @@ function renderRegistrySheet(i){
 
 /* ---------- RULES ---------- */
 function renderRules(){
-  const sectionsHtml = RULES.sections.map(s => `
-    <div class="sheet-section">
-      ${s.heading ? `<h2>${escapeHtml(s.heading)}</h2>` : ""}
-      ${s.html ? s.html : ""}
-    </div>
-  `).join("");
 
-  chrome(`
-    <div class="page">
-      <button class="back-link" onclick="go('home')">&larr; Back to Lobby</button>
-      <div class="sheet-header" style="border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:32px;">
-        <div class="header-text">
-          <div class="eyebrow">Greyhound Academy</div>
-          <h1>${escapeHtml(RULES.title)}</h1>
-          <div class="subtitle">${escapeHtml(RULES.sub)}</div>
-        </div>
-      </div>
-      <div class="sheet-body">${sectionsHtml}</div>
-    </div>
-  `, ["Rules"]);
+chrome(`
+<div class="menu-view">
+<button class="back-link" onclick="go('home')">
+    &larr; Back to Lobby
+</button>
+<div class="menu-header">
+<div class="eyebrow">Greyhound Academy</div>
+<h1>Rules</h1>
+<div class="sub">
+Everything you need to know before entering Greyhound
+</div>
+</div>
+
+<div class="home-grid">
+
+<div class="home-card" onclick="go('rules-guidelines')">
+<div class="home-card" onclick="go('rules-world')">
+<div class="home-card" onclick="go('rules-powers')">
+<div class="home-card" onclick="go('rules-school')">
+<img class="rule-icon" src="${PLACEHOLDER_IMG}">
+<h2>Posting & Contribution Guidelines</h2>
+<p>General etiquette, formatting and collaborative writing.</p>
+</div>
+
+<div class="home-card">
+<img class="rule-icon" src="${PLACEHOLDER_IMG}">
+<h2>World Setting</h2>
+<p>Learn about the Academy and the world surrounding it.</p>
+</div>
+
+<div class="home-card">
+<img class="rule-icon" src="${PLACEHOLDER_IMG}">
+<h2>Character Powers & Stats</h2>
+<p>Classification system, factions and power progression.</p>
+</div>
+
+<div class="home-card">
+<img class="rule-icon" src="${PLACEHOLDER_IMG}">
+<h2>Greyhound Rules</h2>
+<p>The Academy's internal regulations.</p>
+</div>
+
+</div>
+
+</div>
+`);
+
 }
 
 /* ---------- PLACES (groups) ---------- */
