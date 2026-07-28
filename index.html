@@ -763,7 +763,7 @@ function renderHome(){
     <div class="menu-view">
       <div class="menu-header">
         <div class="eyebrow">Greyhound Academy</div>
-        <h1>Story Hub</h1>
+        <h1>Lobby</h1>
         <div class="sub">Registry &middot; Rules &middot; World Map</div>
       </div>
       <div class="home-grid">
@@ -849,7 +849,7 @@ function renderRules(){
 
   chrome(`
     <div class="page">
-      <button class="back-link" onclick="go('home')">&larr; Back to Story Hub</button>
+      <button class="back-link" onclick="go('home')">&larr; Back to Lobby</button>
       <div class="sheet-header" style="border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:32px;">
         <div class="header-text">
           <div class="eyebrow">Greyhound Academy</div>
@@ -893,7 +893,7 @@ function renderPlaces(path){
         <div class="sub">${path.length ? "Select a place to explore" : "The Academy, and the world around it"}</div>
       </div>
       <div style="text-align:center; margin-bottom:32px;">
-        <button class="back-link" style="margin:0;" onclick="go('${path.length ? 'places' : 'home'}', {placesPath:[${path.slice(0,-1).map(p=>`'${p}'`).join(",")}]})">&larr; Back${path.length ? " to " + escapeHtml(parentLabel) : " to Story Hub"}</button>
+        <button class="back-link" style="margin:0;" onclick="go('${path.length ? 'places' : 'home'}', {placesPath:[${path.slice(0,-1).map(p=>`'${p}'`).join(",")}]})">&larr; Back${path.length ? " to " + escapeHtml(parentLabel) : " to Lobby"}</button>
       </div>
       <div class="roster-grid">${tiles}</div>
     </div>
