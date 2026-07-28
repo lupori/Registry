@@ -763,13 +763,14 @@ const PLACES = [
               { id: "corridor2", name: "Corridor", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
             ]
           },
-               {
+                {
           id: "floor3",
           name: "Third Floor",
           type: "group",
           image: PLACEHOLDER_IMG,
 
           children: [
+
             {
               id: "dorms",
               name: "Dorms",
@@ -777,12 +778,15 @@ const PLACES = [
               image: PLACEHOLDER_IMG,
 
               children: [
+
                 {
                   id: "girldorms",
                   name: "Feminine Dorms",
                   type: "group",
                   image: PLACEHOLDER_IMG,
+
                   children: [
+
                     {
                       id: "girlbathrooms",
                       name: "Feminine Bathrooms",
@@ -790,11 +794,13 @@ const PLACES = [
                       image: PLACEHOLDER_IMG,
                       description: "To be filled."
                     },
+
                     {
                       id: "girlswing",
                       name: "Girls' Dormitory Wing",
                       type: "group",
                       image: PLACEHOLDER_IMG,
+
                       children: [
                         {
                           id: "missy-room",
@@ -805,15 +811,19 @@ const PLACES = [
                         }
                       ]
                     }
+
                   ]
                 },
+
 
                 {
                   id: "boydorms",
                   name: "Masculine Dorms",
                   type: "group",
                   image: PLACEHOLDER_IMG,
+
                   children: [
+
                     {
                       id: "boybathrooms",
                       name: "Masculine Bathrooms",
@@ -821,12 +831,15 @@ const PLACES = [
                       image: PLACEHOLDER_IMG,
                       description: "To be filled."
                     },
+
                     {
                       id: "boyswing",
                       name: "Boys' Dormitory Wing",
                       type: "group",
                       image: PLACEHOLDER_IMG,
+
                       children: [
+
                         {
                           id: "nate-room",
                           name: "Nate's Room",
@@ -834,6 +847,7 @@ const PLACES = [
                           image: PLACEHOLDER_IMG,
                           description: "To be filled."
                         },
+
                         {
                           id: "aiden-room",
                           name: "Aiden's Bedroom",
@@ -841,36 +855,47 @@ const PLACES = [
                           image: PLACEHOLDER_IMG,
                           description: "To be filled."
                         }
+
                       ]
                     }
+
                   ]
                 }
+
               ]
             }
+
           ]
+        }
+
+      ]
+    },
+
+    {
+      id: "world",
+      name: "The Wider World",
+      type: "group",
+      image: PLACEHOLDER_IMG,
+
+      children: [
+        {
+          id: "placeholder-location",
+          name: "Placeholder Location",
+          type: "location",
+          image: PLACEHOLDER_IMG,
+          description: "To be filled."
         }
       ]
     }
-  },
 
-  {
-    id: "world",
-    name: "The Wider World",
-    type: "group",
-    image: PLACEHOLDER_IMG,
-    children: [
-      {
-        id: "placeholder-location",
-        name: "Placeholder Location",
-        type: "location",
-        image: PLACEHOLDER_IMG,
-        description: "To be filled."
-      }
-           ]
-      }
-    ]
-  }
-];
+  ]
+};
+
+
+/* ============================================================
+   Rendering / routing logic — you shouldn't need to touch
+   anything below this line.
+   ============================================================ */
 
 /* ============================================================
    Rendering / routing logic — you shouldn't need to touch
