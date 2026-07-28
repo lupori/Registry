@@ -29,7 +29,7 @@
     font-family:'Crimson Pro', serif;
     min-height:100vh;
   }
-body::before{
+  body::before{
     content:"";
     position:fixed;
     inset:0;
@@ -38,23 +38,53 @@ body::before{
     opacity:.06;
     pointer-events:none;
     z-index:0;
-}
+  }
   .layout{
     position:relative;
     z-index:1;
   }
 
-  /* MENU / ROSTER GRID VIEW */
+  /* TOP NAV */
+  .top-nav{
+    max-width:1100px;
+    margin:0 auto;
+    padding:24px 64px 0;
+    position:relative;
+    z-index:2;
+  }
+  .home-link{
+    font-family:'Cinzel', serif;
+    font-size:0.7rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+  }
+  .home-link:hover{ color:var(--gold-bright); }
+
+  .breadcrumb{
+    font-family:'Cinzel', serif;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--parchment-dim);
+    margin-top:10px;
+  }
+  .breadcrumb span{ color:var(--gold-bright); }
+
+  /* MENU / GRID VIEWS (home, registry roster, places) */
   .menu-view{
     position:relative;
     flex:1;
-    padding:72px 64px;
+    padding:48px 64px 72px;
     max-width:1100px;
     margin:0 auto;
     overflow:hidden;
-  
   }
-  
+
   .menu-header{
     text-align:center;
     margin-bottom:56px;
@@ -87,28 +117,23 @@ body::before{
     font-family:'Cinzel', serif;
   }
 
- .roster-grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:32px 24px;
-}
-
-.roster-tile{
-  width:140px;
-  flex:0 0 auto;
-}
-.menu-header,
-.roster-grid{
+  .roster-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:32px 24px;
     position:relative;
     z-index:1;
-}
+  }
+
   .roster-tile{
     cursor:pointer;
     display:flex;
     flex-direction:column;
     align-items:center;
     text-align:center;
+    width:140px;
+    flex:0 0 auto;
   }
 
   .tile-frame{
@@ -147,11 +172,48 @@ body::before{
     color:var(--gold-bright);
   }
 
-  /* MAIN SHEET PAGE */
+  /* HOME CARDS */
+  .home-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:28px;
+    position:relative;
+    z-index:1;
+  }
+  .home-card{
+    cursor:pointer;
+    width:260px;
+    border:1px solid var(--gold);
+    background:rgba(184,150,79,0.04);
+    padding:32px 24px;
+    text-align:center;
+    transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .home-card:hover{
+    border-color:var(--gold-bright);
+    transform:translateY(-4px);
+    box-shadow:0 10px 26px rgba(0,0,0,0.35);
+  }
+  .home-card h2{
+    font-family:'Cinzel', serif;
+    font-size:1.15rem;
+    color:var(--gold-bright);
+    margin:0 0 12px;
+    letter-spacing:0.03em;
+  }
+  .home-card p{
+    color:var(--parchment-dim);
+    font-size:0.95rem;
+    line-height:1.55;
+    margin:0;
+  }
+
+  /* MAIN SHEET PAGE (registry character sheet) */
   .page{
     position:relative;
     flex:1;
-    padding:64px 72px;
+    padding:40px 72px 72px;
     max-width:900px;
     margin:0 auto;
     overflow:hidden;
@@ -161,7 +223,7 @@ body::before{
     position:relative;
     z-index:1;
   }
-  
+
   .back-link{
     display:inline-flex;
     align-items:center;
@@ -208,6 +270,8 @@ body::before{
     filter:sepia(10%);
   }
 
+  .header-text{ flex:1; }
+
   .header-text .eyebrow{
     font-family:'Cinzel', serif;
     font-size:0.68rem;
@@ -230,6 +294,15 @@ body::before{
     font-style:italic;
     color:var(--parchment-dim);
     font-size:1.05rem;
+  }
+
+  .crest{
+    width:115px;
+    height:auto;
+    opacity:0.8;
+    align-self:flex-end;
+    margin-bottom:0.5px;
+    filter:drop-shadow(0 0 8px rgba(201,169,97,.35));
   }
 
   .sheet-body{
@@ -291,45 +364,143 @@ body::before{
   .sheet-body li{
     margin-bottom:6px;
   }
-.header-text{
-    flex:1;
-}
-.crest{
-    width:115px;
-    height:auto;
-    opacity:0.8;
-    align-self:flex-end; 
-    margin-bottom:0.5px; 
-    filter:drop-shadow(0 0 8px rgba(201,169,97,.35));
-}
+
+  /* LOCATION PAGE */
+  .location-image{
+    width:100%;
+    max-height:420px;
+    object-fit:cover;
+    border:1px solid var(--gold);
+    padding:5px;
+    background:var(--ink);
+    display:block;
+    margin-bottom:28px;
+  }
+
+  .location-description{
+    font-size:1.08rem;
+    line-height:1.75;
+    margin-bottom:40px;
+  }
+
+  .comments-block h2{
+    font-family:'Cinzel', serif;
+    font-size:0.85rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 18px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .comment-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:32px;
+    border:1px solid var(--line);
+    padding:18px;
+    background:rgba(184,150,79,0.03);
+  }
+
+  .comment-form select,
+  .comment-form textarea{
+    font-family:'Crimson Pro', serif;
+    font-size:1rem;
+    background:var(--ink);
+    color:var(--parchment);
+    border:1px solid var(--line);
+    padding:10px 12px;
+  }
+
+  .comment-form select{
+    align-self:flex-start;
+    min-width:160px;
+    font-family:'Cinzel', serif;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    color:var(--gold-bright);
+  }
+
+  .comment-form textarea{
+    resize:vertical;
+    min-height:80px;
+    line-height:1.5;
+  }
+
+  .comment-form button{
+    align-self:flex-end;
+    font-family:'Cinzel', serif;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    background:none;
+    border:1px solid var(--gold);
+    color:var(--gold-bright);
+    padding:10px 22px;
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+
+  .comment-form button:hover{
+    background:var(--gold);
+    color:var(--ink-deep);
+  }
+
+  .comments-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .comment{
+    border-left:2px solid var(--gold);
+    padding:8px 16px;
+  }
+
+  .comment-author{
+    font-family:'Cinzel', serif;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    margin-bottom:4px;
+  }
+
+  .comment-time{
+    font-family:'Cinzel', serif;
+    font-size:0.6rem;
+    letter-spacing:0.06em;
+    color:var(--parchment-dim);
+    margin-left:8px;
+    text-transform:none;
+  }
+
+  .comment-text{
+    color:var(--parchment);
+    line-height:1.6;
+    white-space:pre-wrap;
+  }
+
+  .no-comments,
+  .loading-comments{
+    color:var(--parchment-dim);
+    font-style:italic;
+  }
+
   /* mobile */
   @media (max-width: 820px){
-    .menu-view{
-      padding:48px 24px;
-    }
-    .menu-header h1{
-      font-size:1.9rem;
-    }
-    .roster-grid{
-      gap:24px 16px;
-    }
-    .roster-tile{
-      width:110px;
-    }
-    .tile-frame{
-      width:90px;
-      height:90px;
-    }
-    .page{
-      padding:36px 24px;
-    }
-    .sheet-header{
-      flex-direction:column;
-      align-items:flex-start;
-    }
-    .header-text h1{
-      font-size:2rem;
-    }
+    .top-nav{ padding:20px 24px 0; }
+    .menu-view{ padding:32px 24px 48px; }
+    .menu-header h1{ font-size:1.9rem; }
+    .roster-grid{ gap:24px 16px; }
+    .roster-tile{ width:110px; }
+    .tile-frame{ width:90px; height:90px; }
+    .page{ padding:28px 24px 48px; }
+    .sheet-header{ flex-direction:column; align-items:flex-start; }
+    .header-text h1{ font-size:2rem; }
+    .home-card{ width:100%; max-width:320px; }
   }
 </style>
 </head>
@@ -339,9 +510,15 @@ body::before{
 
 <script>
 /* ============================================================
-   ADD YOUR CHARACTERS HERE.
-   Copy an object below, change the fields, add it to the array.
-   You can have up to 15+ characters — there's no limit.
+   PLACEHOLDER IMAGE — used anywhere you haven't added a real
+   image URL yet. Swap it out for a hosted URL (same way you
+   host character portraits) whenever you're ready.
+   ============================================================ */
+const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23182848'/%3E%3Ctext x='50%25' y='50%25' fill='%23c9a961' font-family='sans-serif' font-size='16' text-anchor='middle' dominant-baseline='middle'%3EAdd image URL%3C/text%3E%3C/svg%3E";
+
+/* ============================================================
+   CHARACTERS — the registry. Same data/format as before.
+   Add or edit characters here.
    ============================================================ */
 const characters = [
   {
@@ -356,47 +533,30 @@ const characters = [
       "Faction": "Nox discipline"
     },
     sections: [
-      {
-        heading: "Appearance",
-        html: `<p>Missy is tall for her age, with a lean frame. She has a very beautiful face but is overall graceless with a constant lazy look in her eyes. She has pale skin that tans easily under the sun and long ash-blonde hair that are often intertwined together making her whole look seem even scruffier. Her eyes are an unusually light blue-gray.</p>`
-      },
-      {
-        heading: "Personality",
-        html: `<p>Quiet and observant, Missy has a habit of studying people before speaking to them. She rarely trusts authority figures and instinctively assumes people are hiding something. Despite this, she possesses a strong protective instinct toward weaker students and people she sees as abandoned or exploited.</p>
+      { heading: "Appearance", html: `<p>Missy is tall for her age, with a lean frame. She has a very beautiful face but is overall graceless with a constant lazy look in her eyes. She has pale skin that tans easily under the sun and long ash-blonde hair that are often intertwined together making her whole look seem even scruffier. Her eyes are an unusually light blue-gray.</p>` },
+      { heading: "Personality", html: `<p>Quiet and observant, Missy has a habit of studying people before speaking to them. She rarely trusts authority figures and instinctively assumes people are hiding something. Despite this, she possesses a strong protective instinct toward weaker students and people she sees as abandoned or exploited.</p>
         <p>She has difficulty forming close relationships. Her emotions directly influence her powers, making anger and fear especially dangerous states for her. She often appears detached or sarcastic to conceal how deeply paranoid she truly is.</p>
-        <p>Missy is fairly intelligent but unmotivated academically unless the topic interests her personally. She has a special fascination with conspiracy theories. She keeps notebooks filled with fragmented theories, names, dates, and newspaper clippings.</p>`
-      },
-      {
-        heading: "Background",
-        html: `<p>Melissa Anderson was a young girl of Scandinavian descent. She grew up in the numbered streets of small city as an only child. Her family was of a very modest income and she spent most of her childhood moving between deteriorating apartment complexes near the California coast. Her father, Eric Anderson, worked commercial fishing jobs while her mother cleaned expensive beachfront homes for wealthy families.</p>
+        <p>Missy is fairly intelligent but unmotivated academically unless the topic interests her personally. She has a special fascination with conspiracy theories. She keeps notebooks filled with fragmented theories, names, dates, and newspaper clippings.</p>` },
+      { heading: "Background", html: `<p>Melissa Anderson was a young girl of Scandinavian descent. She grew up in the numbered streets of small city as an only child. Her family was of a very modest income and she spent most of her childhood moving between deteriorating apartment complexes near the California coast. Her father, Eric Anderson, worked commercial fishing jobs while her mother cleaned expensive beachfront homes for wealthy families.</p>
         <p>Before her birth, her mother, Ingrid Anderson, was recruited into a private pharmaceutical study operating across Southern California. Participants were paid unusually large sums to take experimental compounds during pregnancy under strict confidentiality agreements.</p>
         <p>The money helped the Andersons survive —it was certainly more than both the parents' jobs could get them in a month— but not enough for their life to change and certainly not enough for the father's ambitions.</p>
-        <p>When Melissa was twelve, her father abruptly relocated the family to Eureka, a small town in Humboldt County, after claiming he had found an opportunity to make “easy money” working illegal cannabis farms in an isolated location of the area that was later going to become known under the name "Murder Mountain". According to the mother, he became increasingly paranoid after arriving there. He spoke about armed men in the woods, unmarked helicopters flying overhead at night, and people disappearing without explanation.</p>
+        <p>When Melissa was twelve, her father abruptly relocated the family to Eureka, a small town in Humboldt County, after claiming he had found an opportunity to make "easy money" working illegal cannabis farms in an isolated location of the area that was later going to become known under the name "Murder Mountain". According to the mother, he became increasingly paranoid after arriving there. He spoke about armed men in the woods, unmarked helicopters flying overhead at night, and people disappearing without explanation.</p>
         <p>Less than a year later, Eric Anderson vanished. The police classified him as another missing transient connected to the region. No body was ever recovered.</p>
         <p>Shortly afterward, Ingrid decided to move them back to San Diego.</p>
         <p>Then came the fire. Official reports concluded that a gas leak caused the blaze that consumed the house they were living in. Investigators stated Ingrid Anderson died trapped inside after the kitchen erupted in flames during the night.</p>
         <p>Miraculously, Melissa got out.</p>
         <p>After the incident, Melissa spent several weeks under psychiatric observation.</p>
-        <p>Since she was already quite old and could not be inserted into the foster care system, Missy received a highly unusual scholarship offer from Greyhound Academy, a remote boarding school known for accepting psychologically “exceptional” students.</p>
-        <p>Missy has attended Greyhound Academy for the past year.</p>`
-       },
-      {
-        heading: "Ability Description",
-        html: `<p>Missy can manifest and manipulate elemental phenomena through emotional stimulus. Unlike most elemental users, she does not appear limited to a single element. Fire is the easiest for her to generate, followed by water and localized atmospheric manipulation such as sudden wind pressure, condensation, or temperature shifts.</p>
+        <p>Since she was already quite old and could not be inserted into the foster care system, Missy received a highly unusual scholarship offer from Greyhound Academy, a remote boarding school known for accepting psychologically "exceptional" students.</p>
+        <p>Missy has attended Greyhound Academy for the past year.</p>` },
+      { heading: "Ability Description", html: `<p>Missy can manifest and manipulate elemental phenomena through emotional stimulus. Unlike most elemental users, she does not appear limited to a single element. Fire is the easiest for her to generate, followed by water and localized atmospheric manipulation such as sudden wind pressure, condensation, or temperature shifts.</p>
         <p>Her abilities become significantly more dangerous during emotional distress. Strong episodes can destabilize entire rooms or outdoor areas, causing chain reactions in weather patterns, electronics, and combustible materials.</p>
-        <p>Some instructors suspect her powers are less “elemental control” and more the externalization of unstable energy states her body naturally produces.</p>`
-        },
-      {
-        heading: "Control Level: Unstable"
-      },
-      {
-        heading: "Likes/Dislikes",
-        html: `<ul><li><strong>Likes:</strong> ARainstorms, old crime documentaries, black coffee, cold weather.</li><li><strong>Dislikes:</strong> Hospitals, bright fluorescent lights, being touched unexpectedly, questions about her parents, open flames</li><li><strong>Extra:</strong> She keeps a locked metal box beneath her bed containing burnt photographs, old medical invoices, and a single pill bottle with no label. She also has very odd nightmares that do not let her get a good night's sleep almost ever.</li></ul>`
-      }
+        <p>Some instructors suspect her powers are less "elemental control" and more the externalization of unstable energy states her body naturally produces.</p>` },
+      { heading: "Control Level: Unstable" },
+      { heading: "Likes/Dislikes", html: `<ul><li><strong>Likes:</strong> Rainstorms, old crime documentaries, black coffee, cold weather.</li><li><strong>Dislikes:</strong> Hospitals, bright fluorescent lights, being touched unexpectedly, questions about her parents, open flames</li><li><strong>Extra:</strong> She keeps a locked metal box beneath her bed containing burnt photographs, old medical invoices, and a single pill bottle with no label. She also has very odd nightmares that do not let her get a good night's sleep almost ever.</li></ul>` }
     ]
-     },
-   {
-  name: "Nathaniel (Nate) Crawford",
+  },
+  {
+    name: "Nathaniel (Nate) Crawford",
     title: "Probability manipulation",
     portrait: "https://raw.githubusercontent.com/lupori/Registry/main/images/54ec6ea50d76f9586f6edbced2e49212.jpg",
     crest: "https://raw.githubusercontent.com/lupori/Registry/main/images/NOX.png",
@@ -407,50 +567,31 @@ const characters = [
       "Faction": "Nox discipline"
     },
     sections: [
-      {
-        heading: "Appearance",
-        html: `<p>Nate is quite tall for his age, athletic in an easy, unbothered way. Naturally proportioned, as if he’d never had to work for it. </p>
-        <p>He’s kept a charming, dimpled smile from his early years that he deploys constantly and well (his best weapon). His eyes are warm, with a little overperceptive gaze, the kind that make people feel singled out when he looks at them, as if he’d chose to grace them with his attention. Light hair, perpetually a little sun-kissed from sailing, tennis, polo, whatever club sports in season is worn in that cool effortless way. He carries himself with the calculated attitude of someone who’s never worried about being looked at, which of course only makes people look more. Up-close, there’s a flicker of something underneath that curated image: a second too long checking how a joke landed, a tightness in his smile when something happens that he didn’t see coming. </p>
-        <p>The way he dresses is as calculated but casual-looking as everything else: quarter-zips, oxford shirts, boat shoes, a family watch that’s clearly worth more than most people’s cars. </p>`
-      },
-      {
-        heading: "Personality",
-        html: `<p>Conscious of his own talents and raised in privilege, Nate grew up as the perfect example of a rich kid. It's safe to say that even without his powers, the world would have stopped spinning when he asked it to. And well, the amount of self-awareness a situation like this would require to produce a humble person simply doesn't match this kid's.</p>
+      { heading: "Appearance", html: `<p>Nate is quite tall for his age, athletic in an easy, unbothered way. Naturally proportioned, as if he'd never had to work for it.</p>
+        <p>He's kept a charming, dimpled smile from his early years that he deploys constantly and well (his best weapon). His eyes are warm, with a little overperceptive gaze, the kind that make people feel singled out when he looks at them, as if he'd chose to grace them with his attention. Light hair, perpetually a little sun-kissed from sailing, tennis, polo, whatever club sports in season is worn in that cool effortless way. He carries himself with the calculated attitude of someone who's never worried about being looked at, which of course only makes people look more. Up-close, there's a flicker of something underneath that curated image: a second too long checking how a joke landed, a tightness in his smile when something happens that he didn't see coming.</p>
+        <p>The way he dresses is as calculated but casual-looking as everything else: quarter-zips, oxford shirts, boat shoes, a family watch that's clearly worth more than most people's cars.</p>` },
+      { heading: "Personality", html: `<p>Conscious of his own talents and raised in privilege, Nate grew up as the perfect example of a rich kid. It's safe to say that even without his powers, the world would have stopped spinning when he asked it to. And well, the amount of self-awareness a situation like this would require to produce a humble person simply doesn't match this kid's.</p>
         <p>Self-entitled, rude at times and almost narcissistic in some ways, his privilege keeps him from seeing the value of things, which, ironically, makes him surprisingly generous. He likes being liked and doesn't mind small gestures or telling people what they want to hear to win their favor, gestures his power only makes more effective. That, combined with the curious magnetism that this degree of confidence and self-assurance generates in someone so young, gives him a peculiar charisma.</p>
-        <p>But how real is that charisma, actually? Nate has had this ability running passively since he was a kid, as a low hum he never switches off, because the idea of measuring his actual baseline terrifies him more than any combat scenario would. He's built his entire identity (popular, effortlessly funny, magnetic, always landing on his feet) on a foundation he can't audit. He's not lying to people when he's charming; he doesn't know who he is without his powers and he’s way past the turning point to figure this out.</p>
-        <p>This has led him to develop a particular panic around situations where he can't control the odds. He's managed this effectively by letting everyone believe his power is restricted to probability in the context of combat, not in everything he does. If a friend or rival ever proposed "let's see who you are without it," it would read as one of the most threatening things anyone could say to him.</p>`
-       },
-      {
-        heading: "Background",
-        html: `<p>Nate grew up in Grosse Pointe, Michigan. Old money in violent contrast with the industrial bones of Detroit, million-dollar worth estates and sailing clubs sitting just a few miles away from a factory-built city. The heaven of American neoliberalism. In Grosse Pointe, everyone’s family has known everyone else’s for three generations, business gets done over dinner, and wealth carries itself with the discretion of money that doesn't need to announce itself.</p>
-        <p>This was the world in which the Crawfords gave birth to two lovely twins: Nathaniel and Penelope. However, the pretty matching image of the pair didn't survive long, as their personalities only grew more different over time. </p>
-        <p>Even as a child, Nathaniel was “destinated to greatness”, or so his father accountant, a mediocre man (Larry? Carrie? Who cares) used to mumble in admiration, hoping it might earn him a bonus. Even as a baby, for God’s sake. His pediatrician claimed he’d never seen one walk that early. His mother, Rosie Crawford – a law degree and two Ivy-League master’s degrees hanging on the wall of the house she’d chosen to devote herself to the moment she got pregnant –would yap to anyone who’d sit still long enough in her yogalates class about her son’s achievements. First, he walked, then he read, then he wrote. Then came soccer, tennis, horse-riding, and he was simply good at all of it, no exceptions. He won every competition, every poetry contest, every spelling bee, every debate. Rosie went red with pride. Mr. Crawford, for his part, was never actually at the competitions, the contests, or the shows, but he loved hearing the praise secondhand, filtered through whatever Larry-or-McFlurry happened to mention that week. Well, well, the apple doesn't fall far from the tree, he'd joke.</p>
-        <p>Penelope, his sister, on the other hand, fell from the tree and never stopped rolling down the hill. Her odd, quiet nature, mistaken for shyness as a kid, only grew more apparent as both twins entered their teenage years. She wasn't bad. She was actually quite good, above average, even. But it's very difficult to appreciate the beauty of a gemstone next to a diamond, isn't it? Her brother was simply too shiny. So shiny that he seemed to blind their parents the same way the sun leaves dark spots on your vision after you stare at it too long. And Nellie felt like she was always standing right in those black spots, passing completely unnoticed. It would've been easier if she were just weird. But as she got older, it became clear she wasn't just weird. So, the pediatrician referred her to a therapist, and the therapist to a psychiatrist. And once she started missing school for the appointments, people would talk, so she was pulled out and homeschooled instead.</p>
-        <p>Nate had always appreciated his sister's quiet nature. He found it calming. He loved her sharp, few-words humor, her ice-cutting observations, how comfortable she made silence feel. Penelope liked Nate for who he was, not for what he did, and he knew that, and felt grateful for it. So, when the weight of all his achievements started pressing down on him, when he began to suspect he might be nothing without them, he found real relief in knowing that even if he turned out to be nothing, she'd still be there. </p>
-        <p>Until the day she wasn't.</p>
-        <p>Penelope was taken away three days before they both turned thirteen. She was "not doing well" and needed "professional care" their parents could no longer provide. This was bullshit, of course, and Nate said so to anyone who'd listen. Being amputated from his grounding element like that wrecked something in him, badly enough that he stopped caring about anything. And it was as if something switched off around him in response. His endless luck ran out. His grades dropped. Friends drifted. He started failing at everything, but strangely, he enjoyed it. Because for the first time, he wasn't doing what people wanted. To be fair he wasn't doing what he wanted either, but it felt like a kind of victory anyway.</p>
-        <p>Eventually his parents gave in, and they struck a deal: he could write to his sister once a week. So, he did, with real excitement : pages and pages of high school gossip, every meme and dumb internet joke he found funny printed out, every detail of everything they would have talked about if she'd just been there.</p>
-        <p>He never got an answer. Not to that letter, or to any of the ones that followed. He figured she blamed him, somehow. He kept writing anyway.</p>
-        <p>Eventually he climbed out of that dark place, and things started going right again, almost too right. Whenever he tried at something, it just worked. It only deepened a suspicion he'd always quietly carried: that things being this good for him couldn't just be luck. And as if he'd summoned it himself, the Academy contacted him shortly after this revelation, at fourteen.</p>
-        <p>For three years now, he's been training there, growing his powers stronger, with no idea that his sister is far closer than he thinks.</p>`
-        },
-      {
-        heading: "Ability Description",
-        html: `<p>Nate can bend the probability of an event happening. Any event, as long as the outcome is not absolute and certain. Which is almost never the case. Although his power has become stronger with time, he doesn’t create outcomes, merely shift the weight of existing probability, like tilting a pool table. </p>
-        <p>The more variables an outcome depends on, the more it costs him. In the lighter cases, it can be simple fatigue, a migraine or a nosebleed, but when he forces the odds too much, he can sometimes experience a rebound effect of unpredictable intensity. He calls this “luck debt”. The universe always finds its way of getting its balance back. The more he bends the odds in its favor, the more the world will correct against him afterward (he becomes more accident-prone, things misfire, he gets unlucky in unrelated domains for a while…) Likewise, he cannot manufacture probability that does not exist. If something has a true 0% chance of happening (e.g. the probability of flying), his powers are useless.</p>
-        <p>When the variables include people’s will, the effectiveness of his powers greatly depend on how aware the other person is, and how much they want a specific outcome. The more someone consciously wants something to happen a certain way, the more friction Nate finds trying to bend it the other way.</p>`
-        },
-      {
-        heading: "Control Level: Medium"
-      },
-      {
-        heading: "Likes/Dislikes",
-        html: `<ul><li><strong>Likes:</strong> Tennis, sport cars, raw meat, the countryside (not the smelly one), complimenting the old ladies, debating, being the center of attention.</li><li><strong>Dislikes:</strong> Unexpected turns of events, unpredictable people, the texture of jelly, people that moan about class-privilege (just work and earn money?) and dogs.</li></ul>`
-      }
+        <p>But how real is that charisma, actually? Nate has had this ability running passively since he was a kid, as a low hum he never switches off, because the idea of measuring his actual baseline terrifies him more than any combat scenario would. He's built his entire identity (popular, effortlessly funny, magnetic, always landing on his feet) on a foundation he can't audit. He's not lying to people when he's charming; he doesn't know who he is without his powers and he's way past the turning point to figure this out.</p>
+        <p>This has led him to develop a particular panic around situations where he can't control the odds. He's managed this effectively by letting everyone believe his power is restricted to probability in the context of combat, not in everything he does. If a friend or rival ever proposed "let's see who you are without it," it would read as one of the most threatening things anyone could say to him.</p>` },
+      { heading: "Background", html: `<p>Nate grew up in Grosse Pointe, Michigan. Old money in violent contrast with the industrial bones of Detroit, million-dollar worth estates and sailing clubs sitting just a few miles away from a factory-built city. The heaven of American neoliberalism. In Grosse Pointe, everyone's family has known everyone else's for three generations, business gets done over dinner, and wealth carries itself with the discretion of money that doesn't need to announce itself.</p>
+        <p>This was the world in which the Crawfords gave birth to two lovely twins: Nathaniel and Penelope. However, the pretty matching image of the pair didn't survive long, as their personalities only grew more different over time.</p>
+        <p>Even as a child, Nathaniel was "destinated to greatness", or so his father's accountant, a mediocre man used to mumble in admiration, hoping it might earn him a bonus. Even as a baby, for God's sake. His pediatrician claimed he'd never seen one walk that early. His mother, Rosie Crawford, would tell anyone who'd sit still long enough about her son's achievements. First, he walked, then he read, then he wrote. Then came soccer, tennis, horse-riding, and he was simply good at all of it, no exceptions. He won every competition, every poetry contest, every spelling bee, every debate. Mr. Crawford, for his part, was never actually at the competitions, the contests, or the shows, but he loved hearing the praise secondhand.</p>
+        <p>Penelope, his sister, on the other hand, fell from the tree and never stopped rolling down the hill. Her odd, quiet nature, mistaken for shyness as a kid, only grew more apparent as both twins entered their teenage years. She wasn't bad. She was actually quite good, above average, even. But it's very difficult to appreciate the beauty of a gemstone next to a diamond, isn't it? Her brother was simply too shiny. So, the pediatrician referred her to a therapist, and the therapist to a psychiatrist. And once she started missing school for the appointments, she was pulled out and homeschooled instead.</p>
+        <p>Nate had always appreciated his sister's quiet nature. He found it calming. He loved her sharp, few-words humor, her ice-cutting observations, how comfortable she made silence feel. Penelope liked Nate for who he was, not for what he did, and he knew that, and felt grateful for it.</p>
+        <p>Until the day she wasn't there anymore. Penelope was taken away three days before they both turned thirteen. She was "not doing well" and needed "professional care" their parents could no longer provide. Being amputated from his grounding element like that wrecked something in him, badly enough that he stopped caring about anything. His endless luck ran out. His grades dropped. Friends drifted.</p>
+        <p>Eventually his parents gave in, and they struck a deal: he could write to his sister once a week. He never got an answer. Not to that letter, or to any of the ones that followed. He kept writing anyway.</p>
+        <p>Eventually he climbed out of that dark place, and things started going right again, almost too right. It only deepened a suspicion he'd always quietly carried: that things being this good for him couldn't just be luck. The Academy contacted him shortly after this revelation, at fourteen.</p>
+        <p>For three years now, he's been training there, growing his powers stronger, with no idea that his sister is far closer than he thinks.</p>` },
+      { heading: "Ability Description", html: `<p>Nate can bend the probability of an event happening. Any event, as long as the outcome is not absolute and certain. Which is almost never the case. Although his power has become stronger with time, he doesn't create outcomes, merely shift the weight of existing probability, like tilting a pool table.</p>
+        <p>The more variables an outcome depends on, the more it costs him. In the lighter cases, it can be simple fatigue, a migraine or a nosebleed, but when he forces the odds too much, he can sometimes experience a rebound effect of unpredictable intensity. He calls this "luck debt". The more he bends the odds in its favor, the more the world will correct against him afterward. Likewise, he cannot manufacture probability that does not exist. If something has a true 0% chance of happening, his powers are useless.</p>
+        <p>When the variables include people's will, the effectiveness of his powers greatly depend on how aware the other person is, and how much they want a specific outcome. The more someone consciously wants something to happen a certain way, the more friction Nate finds trying to bend it the other way.</p>` },
+      { heading: "Control Level: Medium" },
+      { heading: "Likes/Dislikes", html: `<ul><li><strong>Likes:</strong> Tennis, sport cars, raw meat, the countryside (not the smelly one), complimenting the old ladies, debating, being the center of attention.</li><li><strong>Dislikes:</strong> Unexpected turns of events, unpredictable people, the texture of jelly, people that moan about class-privilege, and dogs.</li></ul>` }
     ]
-     },
-   {
-  name: "Penelope Crawford",
+  },
+  {
+    name: "Penelope Crawford",
     title: "Unknown",
     portrait: "https://raw.githubusercontent.com/lupori/Registry/main/images/elle.jpg",
     crest: "https://raw.githubusercontent.com/lupori/Registry/main/images/FERRUM.png",
@@ -461,33 +602,16 @@ const characters = [
       "Faction": "Ferrum discipline"
     },
     sections: [
-      {
-        heading: "Appearance",
-        html: `<p> To be filled </p>`
-      },
-      {
-        heading: "Personality",
-        html: `<p>To be filled </p>`
-      },
-      {
-        heading: "Background",
-        html: `<p>To be filled </p>`
-        },
-      {
-        heading: "Ability Description",
-        html: `<p>To be filled </p>`
-      },
-      {
-        heading: "Control Level: To be filled "
-      },
-      {
-        heading: "Likes/Dislikes",
-        html: `<ul><li><strong>Likes:</strong> To be filled.</li><li><strong>Dislikes:</strong> To be filled.</li></ul>`
-      }
+      { heading: "Appearance", html: `<p>To be filled</p>` },
+      { heading: "Personality", html: `<p>To be filled</p>` },
+      { heading: "Background", html: `<p>To be filled</p>` },
+      { heading: "Ability Description", html: `<p>To be filled</p>` },
+      { heading: "Control Level: To be filled" },
+      { heading: "Likes/Dislikes", html: `<ul><li><strong>Likes:</strong> To be filled.</li><li><strong>Dislikes:</strong> To be filled.</li></ul>` }
     ]
-   },
+  },
   {
- name: "Aiden Thorn",
+    name: "Aiden Thorn",
     title: "Metal manipulation",
     portrait: "https://i.pinimg.com/736x/73/7b/a4/737ba4496f2d69a9ecb085fdd0f62097.jpg",
     crest: "https://raw.githubusercontent.com/lupori/Registry/main/images/FERRUM.png",
@@ -498,61 +622,178 @@ const characters = [
       "Faction": "Ferrum discipline"
     },
     sections: [
-      {
-        heading: "Appearance",
-        html: `<p>Aiden has an athletic build and broad shoulders, which can make him seem intimidating despite not being particularly tall. With his shameless attitude and sharp tongue, his face usually carries a permanent smug grin. He has straw-brown hair, a strong, defined jawline, and a sharp, mischievous gaze. Overall, there's something rough and unpolished about his appearance.</p>`
-      },
-      {
-        heading: "Personality",
-        html: `<p>Although he has "settled down a lot with age" (according to his father), he still maintains a generally rebellious and defiant attitude toward authority figures. Aiden holds firm, somewhat old-fashioned values, and believes respect has to be earned, so he has little patience for being told what to do or where to stand simply because someone has authority over him.</p>
-        <p>Despite being a bit of a troublemaker, people tend to like him. His particular kind of charisma, combined with the way he approaches life, creates that constant sense of "what's he going to do next?" that means he's rarely alone. However, his toxic dependence on that attention (born from a deep aversion to social rejection) often backfires on him more than he would like. He has gone as far as making reckless decisions or doing stupid things purely to draw attention to himself, though he would obviously never admit it.</p>
-        <p>Aiden likes to claim that he "does his own thing," but in reality, he almost always ends up dragged into other people's conflicts due to his extremely temperamental nature and his tendency to defend lost causes. This has brought him plenty of problems, along with his habit of becoming overly familiar with people far too quickly.</p>
-        <p>Ironically, because of how strongly he clings to values he considers essential (honor, loyalty, staying true to his principles) he can come across as more rigid than he actually is. In truth, Aiden is very open-minded and generally friendly toward almost anyone at first. That said, it doesn't take much for him to turn on someone if they start acting like an asshole.</p>`
-      },
-      {
-        heading: "Background",
-        html: `<p>The fifth of seven siblings, Aiden was raised in a conservative family that was torn apart by the Church of Scientology, like many others. The sect first took his father when Aiden was too young to properly remember him, and his mother followed shortly after. In his early years, Aiden didn't question much. However, his older sister's emancipation became the trigger for a growing sense of doubt. Seeing, through social media, the life she was building in New York (a life he had never even known was possible at the age of ten) awakened in him a deep longing for a world he had never been allowed to experience.</p>
-        <p>Little by little, he began to question everything around him, becoming a serious problem for his parents. With half of his siblings already deeply indoctrinated, it became his personal mission to pull the others away from the same path. His parents, however, could not risk their standing within the church. It had already been difficult enough dealing with his older sister. Following the "out of sight, out of mind" logic, Aiden's increasingly rebellious behavior led to him being sent to a military boarding school at the age of thirteen.</p>
-        <p>He was well-liked by the other boys and enjoyed sports, but the rigid structure of the institution felt deeply oppressive to someone with his personality. More often than not, it reminded him of the very life he had been trying to escape in the first place. Aiden proved to be a difficult student to manage.</p>
-        <p>He refused to accept disrespect from authority figures simply because of their rank or position, which led to constant disciplinary action. Over time, detention became his default state.</p>
-        <p>After a few years, one particular sergeant grew increasingly frustrated with him and developed a fixation. While Aiden was undeniably troublesome, this sergeant would punish him for things as minor as a slightly misaligned shoe or a "sloppy attitude" that could not be objectively proven, or would judge assigned chores as poorly done even when they were completed correctly. Gradually and deliberately, he made Aiden's life increasingly unbearable.</p>
-        <p>Eventually, the situation escalated to a breaking point, what everyone later referred to simply as "the incident." Nobody ever fully understood what happened that day, but Aiden was placed in isolation immediately afterward.</p>
-        <p>The next day, an elegant woman arrived at the institution, accompanied by several men in suits. There were stacks of documents, hushed conversations, and an unusual level of secrecy.</p>
-        <p>Aiden left the facility the following day, fully convinced he was being transferred to a juvenile correctional prison. Instead, he was driven to Greyhound.</p>`
-      },
-      {
-        heading: "Ability Description",
-        html: `<p>Aiden's body generates magnetic fields that interfere with metallic matter in his surroundings. At its current stage, the ability manifests inconsistently, usually reacting to stress, anger, or fear rather than conscious intent. Small metal objects may vibrate, shift slightly, or be drawn toward him without warning, especially during moments of emotional instability.</p>
+      { heading: "Appearance", html: `<p>Aiden has an athletic build and broad shoulders, which can make him seem intimidating despite not being particularly tall. With his shameless attitude and sharp tongue, his face usually carries a permanent smug grin. He has straw-brown hair, a strong, defined jawline, and a sharp, mischievous gaze. Overall, there's something rough and unpolished about his appearance.</p>` },
+      { heading: "Personality", html: `<p>Although he has "settled down a lot with age" (according to his father), he still maintains a generally rebellious and defiant attitude toward authority figures. Aiden holds firm, somewhat old-fashioned values, and believes respect has to be earned, so he has little patience for being told what to do or where to stand simply because someone has authority over him.</p>
+        <p>Despite being a bit of a troublemaker, people tend to like him. His particular kind of charisma, combined with the way he approaches life, creates that constant sense of "what's he going to do next?" that means he's rarely alone. However, his toxic dependence on that attention often backfires on him more than he would like.</p>
+        <p>Aiden likes to claim that he "does his own thing," but in reality, he almost always ends up dragged into other people's conflicts due to his extremely temperamental nature and his tendency to defend lost causes.</p>
+        <p>Ironically, because of how strongly he clings to values he considers essential (honor, loyalty, staying true to his principles) he can come across as more rigid than he actually is. In truth, Aiden is very open-minded and generally friendly toward almost anyone at first. That said, it doesn't take much for him to turn on someone if they start acting like an asshole.</p>` },
+      { heading: "Background", html: `<p>The fifth of seven siblings, Aiden was raised in a conservative family that was torn apart by the Church of Scientology, like many others. The sect first took his father when Aiden was too young to properly remember him, and his mother followed shortly after. In his early years, Aiden didn't question much. However, his older sister's emancipation became the trigger for a growing sense of doubt.</p>
+        <p>Little by little, he began to question everything around him, becoming a serious problem for his parents. His parents, however, could not risk their standing within the church. Following the "out of sight, out of mind" logic, Aiden's increasingly rebellious behavior led to him being sent to a military boarding school at the age of thirteen.</p>
+        <p>He was well-liked by the other boys and enjoyed sports, but the rigid structure of the institution felt deeply oppressive to someone with his personality. Aiden proved to be a difficult student to manage, refusing to accept disrespect from authority figures simply because of their rank or position.</p>
+        <p>After a few years, one particular sergeant grew increasingly frustrated with him and developed a fixation, gradually and deliberately making Aiden's life increasingly unbearable.</p>
+        <p>Eventually, the situation escalated to a breaking point, what everyone later referred to simply as "the incident." Aiden was placed in isolation immediately afterward.</p>
+        <p>The next day, an elegant woman arrived at the institution, accompanied by several men in suits. Aiden left the facility the following day, fully convinced he was being transferred to a juvenile correctional prison. Instead, he was driven to Greyhound.</p>` },
+      { heading: "Ability Description", html: `<p>Aiden's body generates magnetic fields that interfere with metallic matter in his surroundings. At its current stage, the ability manifests inconsistently, usually reacting to stress, anger, or fear rather than conscious intent. Small metal objects may vibrate, shift slightly, or be drawn toward him without warning, especially during moments of emotional instability.</p>
         <p>With training, the ability has the potential to evolve into full metal manipulation, allowing him to attract, repel, compress, reshape, and alter the structure of nearby metals through direct magnetic influence.</p>
         <p>Advanced applications may include: extracting metal from surrounding structures, shaping it into weapons or restraints, accelerating metallic fragments as projectiles, or reinforcing existing materials. At higher levels of precision, the ability could theoretically extend to the manipulation of iron within the human bloodstream, though such usage would require extreme control and physical strain.</p>
-        <p>Because the ability relies on existing metallic sources, Aiden is significantly more dangerous in urban or industrial environments than in isolated natural settings.</p>`
-      },
-      {
-        heading: "Control Level: Unstable"
-      },
-      {
-        heading: "Likes/Dislikes",
-        html: `<ul><li><strong>Likes:</strong> Any sport that involves some kind of competition, crowded and stimulating social settings, fast food, RuPaul (although he would never admit it), sarcastic humor, beer.</li><li><strong>Dislikes:</strong> coffee, being told what to do, fake people, strong perfume, math, waking up early.</li></ul>`
-      }
-      ]
+        <p>Because the ability relies on existing metallic sources, Aiden is significantly more dangerous in urban or industrial environments than in isolated natural settings.</p>` },
+      { heading: "Control Level: Unstable" },
+      { heading: "Likes/Dislikes", html: `<ul><li><strong>Likes:</strong> Any sport that involves some kind of competition, crowded and stimulating social settings, fast food, RuPaul (although he would never admit it), sarcastic humor, beer.</li><li><strong>Dislikes:</strong> Coffee, being told what to do, fake people, strong perfume, math, waking up early.</li></ul>` }
+    ]
   }
 ];
 
 /* ============================================================
-   Rendering logic — you shouldn't need to touch anything below
+   COMMENT AUTHORS — the names available in the "posting as"
+   dropdown on every location page. Add a name here whenever
+   you add a character above. "OOC" is for out-of-character notes.
+   ============================================================ */
+const COMMENT_AUTHORS = ["Missy", "Nate", "Penelope", "Aiden", "OOC"];
+
+/* ============================================================
+   RULES — edit freely. Same section format as a character sheet.
+   ============================================================ */
+const RULES = {
+  title: "The Rules",
+  sub: "Guidelines for the story we're telling together",
+  sections: [
+    { heading: "General Conduct", html: `<p>To be filled.</p>` },
+    { heading: "Character Powers & Balance", html: `<p>To be filled.</p>` },
+    { heading: "Posting & Contribution Guidelines", html: `<p>To be filled.</p>` },
+    { heading: "Content Boundaries", html: `<p>To be filled.</p>` }
+  ]
+};
+
+/* ============================================================
+   PLACES — the world map. A nested tree.
+   Each node is either:
+     { id, name, type:"group", image, children:[...] }
+   or a leaf:
+     { id, name, type:"location", image, description }
+   Add floors, wings, or locations by copying a node and editing it.
+   ============================================================ */
+const PLACES = [
+  {
+    id: "academy", name: "Greyhound Academy", type: "group", image: PLACEHOLDER_IMG,
+    children: [
+      {
+        id: "exterior", name: "Exterior", type: "group", image: PLACEHOLDER_IMG,
+        children: [
+          { id: "front-gates", name: "Front Gates", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+          { id: "training-grounds", name: "Training Grounds", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." }
+        ]
+      },
+      {
+        id: "interior", name: "Interior", type: "group", image: PLACEHOLDER_IMG,
+        children: [
+          {
+            id: "floor1", name: "First Floor", type: "group", image: PLACEHOLDER_IMG,
+            children: [
+              { id: "great-hall", name: "Great Hall", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "library", name: "Library", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." }
+            ]
+          },
+          {
+            id: "floor2", name: "Second Floor", type: "group", image: PLACEHOLDER_IMG,
+            children: [
+              { id: "dormitories", name: "Dormitories", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "infirmary", name: "Infirmary", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "world", name: "The Wider World", type: "group", image: PLACEHOLDER_IMG,
+    children: [
+      { id: "placeholder-location", name: "Placeholder Location", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." }
+    ]
+  }
+];
+
+/* ============================================================
+   Rendering / routing logic — you shouldn't need to touch
+   anything below this line.
    ============================================================ */
 
-function renderMenu(){
-  const tiles = characters.map((c, i) => `
-    <div class="roster-tile" onclick="openCharacter(${i})">
-      <div class="tile-frame">
-        <img src="${c.portrait}" alt="${c.name}">
-      </div>
-      <div class="tile-name">${c.name}</div>
-    </div>
-  `).join('');
+let state = { screen: "home", placesPath: [], registryIndex: null };
 
-  document.getElementById('layout').innerHTML = `
+function go(screen, extra){
+  state = { ...state, screen, ...(extra || {}) };
+  render();
+}
+
+function escapeHtml(str){
+  const div = document.createElement("div");
+  div.textContent = str == null ? "" : String(str);
+  return div.innerHTML;
+}
+
+function getNode(path){
+  let children = PLACES;
+  let node = null;
+  for (const id of path){
+    node = (children || []).find(c => c.id === id);
+    if (!node) return null;
+    children = node.children || [];
+  }
+  return node;
+}
+
+function breadcrumbHtml(names){
+  if (!names.length) return "";
+  return `<div class="breadcrumb">${names.map((n,i)=> i===names.length-1 ? `<span>${escapeHtml(n)}</span>` : escapeHtml(n)).join(" &rsaquo; ")}</div>`;
+}
+
+function chrome(inner, breadcrumbNames){
+  document.getElementById("layout").innerHTML = `
+    <div class="top-nav">
+      <button class="home-link" onclick="go('home')">&#8962; Greyhound Academy</button>
+      ${breadcrumbNames ? breadcrumbHtml(breadcrumbNames) : ""}
+    </div>
+    ${inner}
+  `;
+  window.scrollTo(0,0);
+}
+
+/* ---------- HOME ---------- */
+function renderHome(){
+  chrome(`
+    <div class="menu-view">
+      <div class="menu-header">
+        <div class="eyebrow">Greyhound Academy</div>
+        <h1>Story Hub</h1>
+        <div class="sub">Registry &middot; Rules &middot; World Map</div>
+      </div>
+      <div class="home-grid">
+        <div class="home-card" onclick="go('registry-menu')">
+          <h2>Registry</h2>
+          <p>Character sheets — appearance, background, abilities, and more.</p>
+        </div>
+        <div class="home-card" onclick="go('rules')">
+          <h2>Rules</h2>
+          <p>How things work here — conduct, powers, and posting guidelines.</p>
+        </div>
+        <div class="home-card" onclick="go('places', {placesPath: []})">
+          <h2>World Map</h2>
+          <p>Explore the Academy and beyond, place by place.</p>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+/* ---------- REGISTRY ---------- */
+function renderRegistryMenu(){
+  const tiles = characters.map((c, i) => `
+    <div class="roster-tile" onclick="go('registry-sheet', {registryIndex:${i}})">
+      <div class="tile-frame"><img src="${c.portrait}" alt="${escapeHtml(c.name)}"></div>
+      <div class="tile-name">${escapeHtml(c.name)}</div>
+    </div>
+  `).join("");
+
+  chrome(`
     <div class="menu-view">
       <div class="menu-header">
         <div class="eyebrow">Greyhound Academy</div>
@@ -561,60 +802,221 @@ function renderMenu(){
       </div>
       <div class="roster-grid">${tiles}</div>
     </div>
-  `;
-  window.scrollTo(0,0);
+  `, ["Registry"]);
 }
 
-function renderSheet(i){
+function renderRegistrySheet(i){
   const c = characters[i];
   const statsHtml = Object.entries(c.stats).map(([label, value]) => `
-    <div class="stat">
-      <div class="stat-label">${label}</div>
-      <div class="stat-value">${value}</div>
-    </div>
-  `).join('');
+    <div class="stat"><div class="stat-label">${escapeHtml(label)}</div><div class="stat-value">${escapeHtml(value)}</div></div>
+  `).join("");
 
   const sectionsHtml = c.sections.map(s => `
     <div class="sheet-section">
-      ${s.heading ? `<h2>${s.heading}</h2>` : ''}
-      ${s.html ? s.html : ''}
+      ${s.heading ? `<h2>${escapeHtml(s.heading)}</h2>` : ""}
+      ${s.html ? s.html : ""}
     </div>
-  `).join('');
+  `).join("");
 
-  document.getElementById('layout').innerHTML = `
+  chrome(`
     <div class="page">
-      <button class="back-link" onclick="renderMenu()">← Back to Registry</button>
+      <button class="back-link" onclick="go('registry-menu')">&larr; Back to Registry</button>
       <div class="sheet-header">
-        <div class="portrait-frame">
-          <img src="${c.portrait}" alt="${c.name}">
-        </div>
+        <div class="portrait-frame"><img src="${c.portrait}" alt="${escapeHtml(c.name)}"></div>
         <div class="header-text">
           <div class="eyebrow">Character Sheet</div>
-          <h1>${c.name}</h1>
-          <div class="subtitle">${c.title}</div>
+          <h1>${escapeHtml(c.name)}</h1>
+          <div class="subtitle">${escapeHtml(c.title)}</div>
         </div>
         <img class="crest" src="${c.crest}" alt="Category Crest">
       </div>
       <div class="sheet-body">
-                <div class="sheet-section">
-            <h2>Stats</h2>
-            <div class="stat-grid">${statsHtml}</div>
-        </div>
-        
+        <div class="sheet-section"><h2>Stats</h2><div class="stat-grid">${statsHtml}</div></div>
         ${sectionsHtml}
-        
-         </div>
       </div>
     </div>
-  `;
-  window.scrollTo(0,0);
+  `, ["Registry", c.name]);
 }
 
-function openCharacter(i){
-  renderSheet(i);
+/* ---------- RULES ---------- */
+function renderRules(){
+  const sectionsHtml = RULES.sections.map(s => `
+    <div class="sheet-section">
+      ${s.heading ? `<h2>${escapeHtml(s.heading)}</h2>` : ""}
+      ${s.html ? s.html : ""}
+    </div>
+  `).join("");
+
+  chrome(`
+    <div class="page">
+      <button class="back-link" onclick="go('home')">&larr; Back to Story Hub</button>
+      <div class="sheet-header" style="border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:32px;">
+        <div class="header-text">
+          <div class="eyebrow">Greyhound Academy</div>
+          <h1>${escapeHtml(RULES.title)}</h1>
+          <div class="subtitle">${escapeHtml(RULES.sub)}</div>
+        </div>
+      </div>
+      <div class="sheet-body">${sectionsHtml}</div>
+    </div>
+  `, ["Rules"]);
 }
 
-renderMenu();
+/* ---------- PLACES (groups) ---------- */
+function nodeNamesForPath(path){
+  const names = [];
+  for (let i=1; i<=path.length; i++){
+    const n = getNode(path.slice(0,i));
+    if (n) names.push(n.name);
+  }
+  return names;
+}
+
+function renderPlaces(path){
+  const node = path.length ? getNode(path) : null;
+  const items = node ? (node.children || []) : PLACES;
+  const title = node ? node.name : "World Map";
+  const parentLabel = path.length ? nodeNamesForPath(path.slice(0,-1)).slice(-1)[0] || "World Map" : null;
+
+  const tiles = items.map(item => `
+    <div class="roster-tile" onclick="go('${item.type === 'location' ? 'location' : 'places'}', {placesPath:[${path.map(p=>`'${p}'`).join(",")}${path.length?",":""}'${item.id}']})">
+      <div class="tile-frame"><img src="${item.image || PLACEHOLDER_IMG}" alt="${escapeHtml(item.name)}"></div>
+      <div class="tile-name">${escapeHtml(item.name)}</div>
+    </div>
+  `).join("");
+
+  chrome(`
+    <div class="menu-view">
+      <div class="menu-header">
+        <div class="eyebrow">${path.length ? "World Map" : "Greyhound Academy"}</div>
+        <h1>${escapeHtml(title)}</h1>
+        <div class="sub">${path.length ? "Select a place to explore" : "The Academy, and the world around it"}</div>
+      </div>
+      <div style="text-align:center; margin-bottom:32px;">
+        <button class="back-link" style="margin:0;" onclick="go('${path.length ? 'places' : 'home'}', {placesPath:[${path.slice(0,-1).map(p=>`'${p}'`).join(",")}]})">&larr; Back${path.length ? " to " + escapeHtml(parentLabel) : " to Story Hub"}</button>
+      </div>
+      <div class="roster-grid">${tiles}</div>
+    </div>
+  `, ["World Map", ...nodeNamesForPath(path)]);
+}
+
+/* ---------- LOCATION (leaf, with comments) ---------- */
+function commentKey(path){
+  return "comments:" + path.join("/");
+}
+
+function renderLocation(path){
+  const node = getNode(path);
+  const parentPath = path.slice(0,-1);
+  const parentLabel = parentPath.length ? (getNode(parentPath) || {}).name : "World Map";
+
+  const authorOptions = COMMENT_AUTHORS.map(a => `<option value="${escapeHtml(a)}">${escapeHtml(a)}</option>`).join("");
+
+  chrome(`
+    <div class="page">
+      <button class="back-link" onclick="go('places', {placesPath:[${parentPath.map(p=>`'${p}'`).join(",")}]})">&larr; Back to ${escapeHtml(parentLabel)}</button>
+      <div class="header-text" style="margin-bottom:24px;">
+        <div class="eyebrow">Location</div>
+        <h1>${escapeHtml(node.name)}</h1>
+      </div>
+      <img class="location-image" src="${node.image || PLACEHOLDER_IMG}" alt="${escapeHtml(node.name)}">
+      <div class="location-description"><p>${escapeHtml(node.description || "")}</p></div>
+
+      <div class="comments-block">
+        <h2>Contributions</h2>
+        <div class="comment-form">
+          <select id="comment-character">${authorOptions}</select>
+          <textarea id="comment-text" placeholder="Write as your character..."></textarea>
+          <button onclick="submitComment()">Post</button>
+        </div>
+        <div id="comments-list" class="comments-list">
+          <div class="loading-comments">Loading contributions...</div>
+        </div>
+      </div>
+    </div>
+  `, ["World Map", ...nodeNamesForPath(path)]);
+
+  loadComments(path);
+}
+
+async function loadComments(path){
+  const key = commentKey(path);
+  let comments = [];
+  try {
+    const result = await window.storage.get(key, true);
+    if (result && result.value) comments = JSON.parse(result.value);
+  } catch(e){
+    comments = [];
+  }
+  renderCommentsList(comments);
+}
+
+function renderCommentsList(comments){
+  const container = document.getElementById("comments-list");
+  if (!container) return;
+  if (!comments.length){
+    container.innerHTML = `<div class="no-comments">No contributions yet. Be the first to write here.</div>`;
+    return;
+  }
+  container.innerHTML = comments.map(c => {
+    let timeLabel = "";
+    try { timeLabel = new Date(c.time).toLocaleString(); } catch(e){ timeLabel = ""; }
+    return `
+      <div class="comment">
+        <div class="comment-author">${escapeHtml(c.character)}${timeLabel ? `<span class="comment-time">${escapeHtml(timeLabel)}</span>` : ""}</div>
+        <div class="comment-text">${escapeHtml(c.text)}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+async function submitComment(){
+  const path = state.placesPath;
+  const select = document.getElementById("comment-character");
+  const textarea = document.getElementById("comment-text");
+  const character = select.value;
+  const text = textarea.value.trim();
+  if (!text) return;
+
+  const key = commentKey(path);
+  let comments = [];
+  try {
+    const result = await window.storage.get(key, true);
+    if (result && result.value) comments = JSON.parse(result.value);
+  } catch(e){
+    comments = [];
+  }
+  comments.push({ character, text, time: new Date().toISOString() });
+
+  try {
+    const saved = await window.storage.set(key, JSON.stringify(comments), true);
+    if (!saved){
+      alert("Could not save your contribution. Please try again.");
+      return;
+    }
+  } catch(e){
+    alert("Could not save your contribution. Please try again.");
+    return;
+  }
+
+  textarea.value = "";
+  renderCommentsList(comments);
+}
+
+/* ---------- ROUTER ---------- */
+function render(){
+  switch(state.screen){
+    case "home": renderHome(); break;
+    case "registry-menu": renderRegistryMenu(); break;
+    case "registry-sheet": renderRegistrySheet(state.registryIndex); break;
+    case "rules": renderRules(); break;
+    case "places": renderPlaces(state.placesPath || []); break;
+    case "location": renderLocation(state.placesPath || []); break;
+    default: renderHome();
+  }
+}
+
+render();
 </script>
 
 </body>
