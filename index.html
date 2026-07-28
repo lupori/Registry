@@ -87,12 +87,17 @@ body::before{
     font-family:'Cinzel', serif;
   }
 
-  .roster-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
-    justify-content:center;
-    gap:32px 24px;
-  }
+ .roster-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:32px 24px;
+}
+
+.roster-tile{
+  width:140px;
+  flex:0 0 auto;
+}
 .menu-header,
 .roster-grid{
     position:relative;
@@ -306,8 +311,10 @@ body::before{
       font-size:1.9rem;
     }
     .roster-grid{
-      grid-template-columns:repeat(auto-fill, minmax(110px, 1fr));
       gap:24px 16px;
+    }
+    .roster-tile{
+      width:110px;
     }
     .tile-frame{
       width:90px;
