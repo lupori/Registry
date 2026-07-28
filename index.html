@@ -828,7 +828,7 @@ const PLACES = [
 
         {
           id: "corridordorm",
-          name: "Dorm's Corridor",
+          name: "Dorms Corridor",
           type: "location",
           image: PLACEHOLDER_IMG,
           description: "To be filled."
@@ -989,8 +989,6 @@ Everything you need to know before entering Greyhound
 
 <div class="home-grid">
 
-<div class="home-grid">
-
 <div class="home-card" onclick="go('rules-guidelines')">
     <img class="rule-icon" src="${PLACEHOLDER_IMG}">
     <h2>Posting & Contribution Guidelines</h2>
@@ -1013,7 +1011,6 @@ Everything you need to know before entering Greyhound
     <img class="rule-icon" src="${PLACEHOLDER_IMG}">
     <h2>Greyhound Rules</h2>
     <p>The Academy's internal regulations.</p>
-</div>
 </div>
 `);
 
@@ -1169,6 +1166,10 @@ function render(){
     case "rules": renderRules(); break;
     case "places": renderPlaces(state.placesPath || []); break;
     case "location": renderLocation(state.placesPath || []); break;
+    case "rules-guidelines": renderRulePage("guidelines"); break;
+    case "rules-world": renderRulePage("world"); break;
+    case "rules-powers": renderRulePage("powers"); break;
+    case "rules-school": renderRulePage("school"); break;
     default: renderHome();
   }
 }
