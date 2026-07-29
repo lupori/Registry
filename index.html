@@ -518,6 +518,28 @@
 
 <div class="layout" id="layout"></div>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, query, where, getDocs
+  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBA6v_xj5ex_l1qdGamJuik9_v3THn9Dvk",
+    authDomain: "greyhound-91d5a.firebaseapp.com",
+    projectId: "greyhound-91d5a",
+    storageBucket: "greyhound-91d5a.firebasestorage.app",
+    messagingSenderId: "618359812857",
+    appId: "1:618359812857:web:e1b263281c2c2ee5c86828"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Expose just what the rest of the (non-module) script needs
+  window.__firebase = { db, collection, addDoc, query, where, getDocs };
+</script>
+
 <script>
 /* ============================================================
    PLACEHOLDER IMAGE — used anywhere you haven't added a real
@@ -724,145 +746,43 @@ const RULES = [
    ============================================================ */
 const PLACES = [
   {
-    id: "academy",
-    name: "Greyhound Academy",
-    type: "group",
-    image: PLACEHOLDER_IMG,
+    id: "academy", name: "Greyhound Academy", type: "group", image: PLACEHOLDER_IMG,
     children: [
       {
-        id: "exterior",
-        name: "Exterior",
-        type: "group",
-        image: PLACEHOLDER_IMG,
+        id: "exterior", name: "Exterior", type: "group", image: PLACEHOLDER_IMG,
         children: [
-          {
-            id: "front-gates",
-            name: "Front Gates",
-            type: "location",
-            image: PLACEHOLDER_IMG,
-            description: "To be filled."
-          },
-          {
-            id: "training-grounds",
-            name: "Training Grounds",
-            type: "location",
-            image: PLACEHOLDER_IMG,
-            description: "To be filled."
-          }
+          { id: "front-gates", name: "Front Gates", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+          { id: "training-grounds", name: "Training Grounds", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
         ]
       },
       {
-        id: "interior",
-        name: "Interior",
-        type: "group",
-        image: PLACEHOLDER_IMG,
+        id: "interior", name: "Interior", type: "group", image: PLACEHOLDER_IMG,
         children: [
           {
-            id: "ground-floor",
-            name: "Ground Floor",
-            type: "group",
-            image: PLACEHOLDER_IMG,
+            id: "ground-floor", name: "Ground Floor", type: "group", image: PLACEHOLDER_IMG,
             children: [
-              {
-                id: "great-hall",
-                name: "Great Hall",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "pool",
-                name: "Pool",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "gym",
-                name: "Gymnasium",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "staircase",
-                name: "Staircase",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              }
+              { id: "great-hall", name: "Great Hall", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "pool", name: "Pool", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "gym", name: "Gymnasium", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "staircase", name: "Staircase", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
             ]
           },
           {
-            id: "floor1",
-            name: "First Floor",
-            type: "group",
-            image: PLACEHOLDER_IMG,
+            id: "floor1", name: "First Floor", type: "group", image: PLACEHOLDER_IMG,
             children: [
-              {
-                id: "library",
-                name: "Library",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "class1",
-                name: "Classroom 1",
-                type: "location",
-                image: "https://raw.githubusercontent.com/lupori/Registry/main/images/images/locations/Class_1.jpg.webp",
-                description: "To be filled."
-              },
-              {
-                id: "class2",
-                name: "Classroom 2",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "study",
-                name: "Study Room",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              }
+              { id: "library", name: "Library", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "class1", name: "Classroom 1", type: "location", image: "https://raw.githubusercontent.com/lupori/Registry/main/images/images/locations/Class_1.jpg.webp", description: "To be filled." },
+              { id: "class2", name: "Classroom 2", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "study", name: "Study Room", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
             ]
           },
           {
-            id: "floor2",
-            name: "Second Floor",
-            type: "group",
-            image: PLACEHOLDER_IMG,
+            id: "floor2", name: "Second Floor", type: "group", image: PLACEHOLDER_IMG,
             children: [
-              {
-                id: "class3",
-                name: "Classroom 3",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "infirmary",
-                name: "Infirmary",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "hmoffice",
-                name: "Headmaster's Office",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              },
-              {
-                id: "corridor2",
-                name: "Corridor",
-                type: "location",
-                image: PLACEHOLDER_IMG,
-                description: "To be filled."
-              }
+              { id: "class3", name: "Classroom 3", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "infirmary", name: "Infirmary", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "hmoffice", name: "Headmaster's Office", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
+              { id: "corridor2", name: "Corridor", type: "location", image: PLACEHOLDER_IMG, description: "To be filled." },
             ]
           },
           {
@@ -982,10 +902,7 @@ const PLACES = [
     ]
   }
 ];
-/* ============================================================
-   Rendering / routing logic — you shouldn't need to touch
-   anything below this line.
-   ============================================================ */
+
 
 /* ============================================================
    Rendering / routing logic — you shouldn't need to touch
@@ -1200,8 +1117,8 @@ function renderPlaces(path){
 }
 
 /* ---------- LOCATION (leaf, with comments) ---------- */
-function commentKey(path){
-  return "comments:" + path.join("/");
+function locationKey(path){
+  return path.join("/");
 }
 
 function renderLocation(path){
@@ -1239,12 +1156,19 @@ function renderLocation(path){
 }
 
 async function loadComments(path){
-  const key = commentKey(path);
+  const container = document.getElementById("comments-list");
+  if (container) container.innerHTML = `<div class="loading-comments">Loading contributions...</div>`;
+
+  const { db, collection, query, where, getDocs } = window.__firebase;
+  const key = locationKey(path);
   let comments = [];
   try {
-    const result = await window.storage.get(key, true);
-    if (result && result.value) comments = JSON.parse(result.value);
+    const q = query(collection(db, "comments"), where("location", "==", key));
+    const snapshot = await getDocs(q);
+    comments = snapshot.docs.map(d => d.data());
+    comments.sort((a, b) => new Date(a.time) - new Date(b.time));
   } catch(e){
+    console.error("Failed to load comments:", e);
     comments = [];
   }
   renderCommentsList(comments);
@@ -1277,29 +1201,24 @@ async function submitComment(){
   const text = textarea.value.trim();
   if (!text) return;
 
-  const key = commentKey(path);
-  let comments = [];
-  try {
-    const result = await window.storage.get(key, true);
-    if (result && result.value) comments = JSON.parse(result.value);
-  } catch(e){
-    comments = [];
-  }
-  comments.push({ character, text, time: new Date().toISOString() });
+  const { db, collection, addDoc } = window.__firebase;
+  const key = locationKey(path);
 
   try {
-    const saved = await window.storage.set(key, JSON.stringify(comments), true);
-    if (!saved){
-      alert("Could not save your contribution. Please try again.");
-      return;
-    }
+    await addDoc(collection(db, "comments"), {
+      location: key,
+      character,
+      text,
+      time: new Date().toISOString()
+    });
   } catch(e){
+    console.error("Failed to save comment:", e);
     alert("Could not save your contribution. Please try again.");
     return;
   }
 
   textarea.value = "";
-  renderCommentsList(comments);
+  loadComments(path);
 }
 /* ---------- RULE PAGE ---------- */
 
